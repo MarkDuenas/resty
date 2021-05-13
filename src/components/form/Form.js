@@ -25,7 +25,7 @@ class Form extends Component {
             onChange={this.changeHandler}
             value={this.state.url}
           />
-          <button> GO!</button>
+          <button> GO! </button>
           <div className='radio-container'>
             <input
               type='radio'

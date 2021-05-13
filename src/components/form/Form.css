@@ -11,3 +11,16 @@
   border: #a9a9a9 solid 1px;
   padding: 10px;
 }
+
+.radio-container input[type="radio"] {
+  visibility: hidden;
+}
+
+.radio-container input[type="radio"]:checked + label,
+.Checked + label {
+  background-color: whitesmoke;
+}
+
+.radio-container label {
+  background-color: darkgray;
+}
