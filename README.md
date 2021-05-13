@@ -4,7 +4,7 @@
 
 [Deployed Link](https://codesandbox.io/s/resty-zbtxq?file=/src/App.js)
 
-[Pull Req](https://github.com/MarkDuenas/api-server/pull/1)
+[Pull Req](https://github.com/MarkDuenas/resty/pull/1)
 
 ## Set up
 
