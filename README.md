@@ -2,9 +2,9 @@
 
 ## Author: Mark Duenas
 
-[Deployed Link](https://codesandbox.io/s/resty-zbtxq?file=/src/App.js)
+[Deployed Link](https://blissful-joliot-216127.netlify.app/)
 
-[Pull Req](https://github.com/MarkDuenas/resty/pull/1)
+[Pull Req](https://github.com/MarkDuenas/resty/pull/2)
 
 ## Set up
 
