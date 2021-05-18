@@ -1,29 +1,19 @@
 import React, { Component } from "react";
+import Results from "../results/Results";
+
 import "./Form.css";
 
 class Form extends Component {
-  state = { url: "", method: "", final: "" };
-
-  submitHandler = (e) => {
-    e.preventDefault();
-    this.setState({ final: `${this.state.method}   ${this.state.url}` });
-    console.log(this.state.final);
-  };
-
-  changeHandler = (e) => {
-    this.setState({ ...this.state, [e.target.name]: e.target.value });
-  };
-
   render() {
     return (
       <div className='form-div'>
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.props.submitHandler}>
           <label htmlFor='url'> URL: </label>
           <input
             type='text'
             name='url'
-            onChange={this.changeHandler}
-            value={this.state.url}
+            value={this.props.url}
+            onChange={this.props.changeHandler}
           />
           <button> GO! </button>
           <div className='radio-container'>
@@ -32,7 +22,7 @@ class Form extends Component {
               name='method'
               value='GET'
               id='get'
-              onChange={this.changeHandler}
+              onChange={this.props.changeHandler}
             />
             <label htmlFor='get'> GET </label>
             <input
@@ -40,7 +30,7 @@ class Form extends Component {
               name='method'
               value='POST'
               id='post'
-              onChange={this.changeHandler}
+              onChange={this.props.changeHandler}
             />
             <label htmlFor='post'> POST </label>
             <input
@@ -48,7 +38,7 @@ class Form extends Component {
               name='method'
               value='PUT'
               id='put'
-              onChange={this.changeHandler}
+              onChange={this.props.changeHandler}
             />
             <label htmlFor='put'> PUT </label>
             <input
@@ -56,13 +46,25 @@ class Form extends Component {
               name='method'
               value='DELETE'
               id='delete'
-              onChange={this.changeHandler}
+              onChange={this.props.changeHandler}
             />
             <label htmlFor='delete'> DELETE </label>
           </div>
         </form>
 
-        <div className='main-content'>{this.state.final}</div>
+        <div className='main-content'>
+          <div className='history'>{this.props.final}</div>
+          <div className='json-content'>
+            {this.props.results ? (
+              <Results
+                headers={this.props.headers}
+                results={this.props.results}
+              />
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
       </div>
     );
   }

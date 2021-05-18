@@ -5,8 +5,10 @@
 }
 
 .main-content {
-  width: 85%;
-  height: 250px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: 400px;
   background-color: #d4d4d4;
   border: #a9a9a9 solid 1px;
   padding: 10px;
@@ -23,4 +25,14 @@
 
 .radio-container label {
   background-color: darkgray;
+}
+
+.history {
+  width: 45%;
+}
+
+.json-content {
+  width: 50%;
+  border: 2px solid #312e32;
+  overflow: auto;
 }
