@@ -1,4 +1,4 @@
-# Basic API Server
+# RESTy
 
 ## Author: Mark Duenas
 
