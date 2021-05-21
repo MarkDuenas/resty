@@ -4,15 +4,15 @@
   align-items: center;
 }
 
-.main-content {
+/* .main-content {
   display: flex;
   justify-content: space-between;
   width: 90%;
-  height: 400px;
+  height: 750px;
   background-color: #d4d4d4;
   border: #a9a9a9 solid 1px;
   padding: 10px;
-}
+} */
 
 .radio-container input[type="radio"] {
   visibility: hidden;
@@ -27,7 +27,7 @@
   background-color: darkgray;
 }
 
-.history {
+/* .history {
   width: 45%;
 }
 
@@ -35,4 +35,4 @@
   width: 50%;
   border: 2px solid #312e32;
   overflow: auto;
-}
+} */
