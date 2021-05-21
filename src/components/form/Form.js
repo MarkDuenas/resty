@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Results from "../results/Results";
 
 import "./Form.css";
 
@@ -10,6 +9,7 @@ class Form extends Component {
         <form onSubmit={this.props.submitHandler}>
           <label htmlFor='url'> URL: </label>
           <input
+            data-testid='url'
             type='text'
             name='url'
             value={this.props.url}
@@ -52,7 +52,7 @@ class Form extends Component {
           </div>
         </form>
 
-        <div className='main-content'>
+        {/* <div className='main-content'>
           <div className='history'>{this.props.final}</div>
           <div className='json-content'>
             {this.props.results ? (
@@ -64,7 +64,7 @@ class Form extends Component {
               ""
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
