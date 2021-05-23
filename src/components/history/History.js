@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ReactJson from "react-json-view";
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import "./Results.scss";
 
-class Results extends Component {
+class History extends Component {
   render() {
     const history = this.props.history.map((item, idx) => {
       return (
         <li key={idx}>
           <button
+            data-testid='history'
             className='url'
-            onClick={this.props.clickHandler}
+            onClick={() => {
+              this.props.historyHandler(item);
+            }}
             value={`${item.method} ${item.url}`}
           >
             {item.method} {item.url}
@@ -19,7 +19,6 @@ class Results extends Component {
         </li>
       );
     });
-
     return (
       <div className='main-content'>
         <div className='history'>
@@ -27,25 +26,21 @@ class Results extends Component {
         </div>
 
         <div className='json-content'>
-          {this.props.results ? (
+          {this.props.data ? (
             <>
               <ReactJson
-                data-testid='results'
-                src={this.props.headers}
+                src={this.props.data.record.headers}
                 theme='google'
                 name='Headers'
                 style={{ fontSize: "1.5em" }}
               />
               <ReactJson
-                data-testid='results'
-                src={this.props.results}
+                src={this.props.data.record.data}
                 theme='google'
                 name='Response'
                 style={{ fontSize: "1.5em" }}
               />
             </>
-          ) : this.props.loading ? (
-            <Loader type='TailSpin' color='#312e32' />
           ) : (
             ""
           )}
@@ -55,4 +50,4 @@ class Results extends Component {
   }
 }
 
-export default Results;
+export default History;
