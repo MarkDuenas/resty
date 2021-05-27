@@ -6,15 +6,21 @@ import Header from "./components/header/Header";
 import Form from "./components/form/Form";
 import Footer from "./components/footer/Footer";
 import Results from "./components/results/Results";
+import Nav from "./components/nav/Nav";
+import History from "./components/history/History";
+import Help from "./components/help/Help";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
     url: "",
     method: "",
-    final: "",
     headers: "",
     results: "",
     history: [],
+    data: "",
+    body: "",
+    loading: false,
   };
 
   componentDidMount() {
@@ -35,17 +41,18 @@ class App extends Component {
 
   submitHandler = async (e) => {
     e.preventDefault();
+    console.log("Submit being hit");
+    this.setState({ ...this.state, loading: true });
     try {
       const response = await axios({
-        method: this.state.method,
+        method: this.state.method || "get",
         url: this.state.url,
-        data: {},
+        data: this.state.body ? JSON.parse(this.state.body) : {},
       });
 
       if (this.state.url && this.state.method) {
         this.setState({
           ...this.state,
-          final: `${this.state.method} ${this.state.url}`,
           headers: response.headers,
           results: response.data,
           history: [
@@ -57,9 +64,8 @@ class App extends Component {
             ...this.state.history,
           ],
         });
+        this.setState({ ...this.state, loading: false });
       }
-
-      console.log(this.state.history, "this is the history");
       // save to local storage
       localStorage.setItem("history", JSON.stringify(this.state.history));
 
@@ -76,28 +82,49 @@ class App extends Component {
     this.setState({ ...this.state, url: words[1], method: words[0] });
   };
 
+  historyHandler = (data) => {
+    this.setState({ ...this.state, data: data });
+  };
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
     return (
-      <div>
-        <Header />
-        <Form
-          submitHandler={this.submitHandler}
-          changeHandler={this.changeHandler}
-          url={this.state.url}
-        />
-        <Results
-          headers={this.state.headers}
-          results={this.state.results}
-          final={this.state.final}
-          clickHandler={this.clickHandler}
-          history={this.state.history}
-        />
-        <Footer />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Nav />
+          <Route exact path='/'>
+            <Form
+              submitHandler={this.submitHandler}
+              changeHandler={this.changeHandler}
+              url={this.state.url}
+              method={this.state.method}
+            />
+            <Results
+              headers={this.state.headers}
+              results={this.state.results}
+              final={this.state.final}
+              clickHandler={this.clickHandler}
+              history={this.state.history}
+              loading={this.state.loading}
+            />
+          </Route>
+          <Route exact path='/history'>
+            <History
+              history={this.state.history}
+              historyHandler={this.historyHandler}
+              data={this.state.data}
+            />
+          </Route>
+          <Route exact path='/help'>
+            <Help />
+          </Route>
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
