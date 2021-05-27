@@ -25,26 +25,24 @@ class History extends Component {
           <ul>{history}</ul>
         </div>
 
-        <div className='json-content'>
-          {this.props.data ? (
-            <>
-              <ReactJson
-                src={this.props.data.record.headers}
-                theme='google'
-                name='Headers'
-                style={{ fontSize: "1.5em" }}
-              />
-              <ReactJson
-                src={this.props.data.record.data}
-                theme='google'
-                name='Response'
-                style={{ fontSize: "1.5em" }}
-              />
-            </>
-          ) : (
-            ""
-          )}
-        </div>
+        {this.props.data ? (
+          <div data-testid='json-content' className='json-content'>
+            <ReactJson
+              src={this.props.data.record.headers}
+              theme='google'
+              name='Headers'
+              style={{ fontSize: "1.5em" }}
+            />
+            <ReactJson
+              src={this.props.data.record.data}
+              theme='google'
+              name='Response'
+              style={{ fontSize: "1.5em" }}
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

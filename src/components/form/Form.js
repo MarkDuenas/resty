@@ -5,8 +5,8 @@ import "./Form.scss";
 class Form extends Component {
   render() {
     return (
-      <div className='form-div' data-testid='api-form'>
-        <form onSubmit={this.props.submitHandler}>
+      <div className='form-div'>
+        <form data-testid='api-form' onSubmit={this.props.submitHandler}>
           <label htmlFor='url'> URL: </label>
           <input
             data-testid='url'

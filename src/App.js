@@ -41,6 +41,7 @@ class App extends Component {
 
   submitHandler = async (e) => {
     e.preventDefault();
+    console.log("Submit being hit");
     this.setState({ ...this.state, loading: true });
     try {
       const response = await axios({
